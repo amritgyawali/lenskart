@@ -1,8 +1,3 @@
-/**
- * Loading spinner component with different sizes and variants
- * Provides consistent loading states across the application
- */
-
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 
@@ -52,9 +47,6 @@ export function LoadingSpinner({
   );
 }
 
-/**
- * Full page loading component
- */
 export function PageLoader({ text = 'Loading...' }: { text?: string }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
@@ -63,9 +55,6 @@ export function PageLoader({ text = 'Loading...' }: { text?: string }) {
   );
 }
 
-/**
- * Overlay loading component
- */
 export function LoadingOverlay({ 
   isVisible, 
   text = 'Loading...' 
@@ -84,9 +73,6 @@ export function LoadingOverlay({
   );
 }
 
-/**
- * Button loading state
- */
 export function ButtonLoader({ size = 'sm' }: { size?: 'sm' | 'md' }) {
   return (
     <Loader2 

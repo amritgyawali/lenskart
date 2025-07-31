@@ -1,8 +1,3 @@
-/**
- * Intersection Observer hook for lazy loading and scroll-based animations
- * Optimizes performance by loading content only when visible
- */
-
 import { useEffect, useRef, useState } from 'react';
 
 export interface UseIntersectionObserverOptions extends IntersectionObserverInit {
@@ -42,9 +37,6 @@ export function useIntersectionObserver(
   return [elementRef, isIntersecting];
 }
 
-/**
- * Hook for lazy loading images
- */
 export function useLazyImage(src: string, placeholder?: string) {
   const [imageSrc, setImageSrc] = useState(placeholder || '');
   const [isLoaded, setIsLoaded] = useState(false);

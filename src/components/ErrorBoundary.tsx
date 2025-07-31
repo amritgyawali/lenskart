@@ -1,8 +1,3 @@
-/**
- * Error Boundary component for graceful error handling
- * Catches JavaScript errors anywhere in the child component tree
- */
-
 "use client";
 
 import React, { Component, ErrorInfo, ReactNode } from 'react';
@@ -135,9 +130,6 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 }
 
-/**
- * Hook version of Error Boundary for functional components
- */
 export function useErrorHandler() {
   return (error: Error, errorInfo?: ErrorInfo) => {
     const appError = new AppError(
@@ -152,14 +144,10 @@ export function useErrorHandler() {
       hookError: true,
     });
 
-    // In a real app, you might want to show a toast or redirect
     console.error('Unhandled error:', error);
   };
 }
 
-/**
- * Higher-order component for wrapping components with error boundary
- */
 export function withErrorBoundary<P extends object>(
   Component: React.ComponentType<P>,
   fallback?: ReactNode

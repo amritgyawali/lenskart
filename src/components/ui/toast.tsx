@@ -1,8 +1,3 @@
-/**
- * Toast notification component for user feedback
- * Provides consistent notification system across the application
- */
-
 "use client";
 
 import * as React from "react";
@@ -134,5 +129,3 @@ export {
   ToastClose,
   ToastAction,
 };
-
-export { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport }

@@ -165,14 +165,15 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 {isProductInCart ? 'Add More to Cart' : 'Add to Cart'}
               </Button>
 
-              <Button
-                onClick={handleTryOn}
-                variant="outline"
-                className="flex-1"
-              >
-                <Eye className="h-4 w-4 mr-2" />
-                Virtual Try-On
-              </Button>
+              <VirtualTryOn product={product}>
+                <Button
+                  variant="outline"
+                  className="flex-1"
+                >
+                  <Eye className="h-4 w-4 mr-2" />
+                  Virtual Try-On
+                </Button>
+              </VirtualTryOn>
             </div>
 
             <div className="flex space-x-3">

@@ -1,8 +1,3 @@
-/**
- * Toast hook for displaying notifications
- * Provides a simple API for showing success, error, warning, and info messages
- */
-
 "use client";
 
 import * as React from "react";

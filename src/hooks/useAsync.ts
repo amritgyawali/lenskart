@@ -1,8 +1,3 @@
-/**
- * Async operations hook with loading states and error handling
- * Provides consistent async state management across components
- */
-
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { AppError, handleError, logError } from '@/lib/errors';
 
@@ -47,7 +42,6 @@ export function useAsync<T = any, Args extends any[] = any[]>(
       try {
         const data = await asyncFunction(...args);
 
-        // Only update state if this is the most recent call and component is still mounted
         if (callId === lastCallId.current && mountedRef.current) {
           setState({ data, loading: false, error: null });
           onSuccess?.(data);
@@ -57,10 +51,8 @@ export function useAsync<T = any, Args extends any[] = any[]>(
       } catch (error) {
         const appError = handleError(error);
         
-        // Log error for monitoring
         logError(appError, { function: asyncFunction.name, args });
 
-        // Only update state if this is the most recent call and component is still mounted
         if (callId === lastCallId.current && mountedRef.current) {
           setState({ data: null, loading: false, error: appError });
           onError?.(appError);
@@ -76,7 +68,6 @@ export function useAsync<T = any, Args extends any[] = any[]>(
     setState({ data: null, loading: false, error: null });
   }, []);
 
-  // Execute immediately if requested
   useEffect(() => {
     if (immediate) {
       execute();
@@ -90,9 +81,6 @@ export function useAsync<T = any, Args extends any[] = any[]>(
   };
 }
 
-/**
- * Hook for handling multiple async operations
- */
 export function useAsyncQueue<T = any>() {
   const [queue, setQueue] = useState<Array<() => Promise<T>>>([]);
   const [isProcessing, setIsProcessing] = useState(false);

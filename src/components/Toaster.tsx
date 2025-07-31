@@ -1,8 +1,3 @@
-/**
- * Toaster component for rendering toast notifications
- * Integrates with the toast hook to display notifications
- */
-
 "use client";
 
 import {

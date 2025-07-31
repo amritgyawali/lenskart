@@ -157,7 +157,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         tax: 0,
         shipping: 0,
         discount: 0,
-        itemCount: 0
+        itemCount: 0,
         updatedAt: new Date(),
         error: null,
       };
@@ -227,7 +227,7 @@ const initialCartState: CartState = {
   tax: 0,
   shipping: 0,
   discount: 0,
-  itemCount: 0
+  itemCount: 0,
   updatedAt: new Date(),
   isLoading: false,
   error: null,
@@ -278,6 +278,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     return () => clearInterval(interval);
   }, []);
+
   const addToCart = (product: Product, quantity: number = 1) => {
     if (quantity <= 0) {
       dispatch({ type: 'SET_ERROR', error: new AppError('Invalid quantity', ErrorCode.INVALID_QUANTITY) });

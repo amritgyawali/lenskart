@@ -1,8 +1,3 @@
-/**
- * Debounce hook for optimizing search and input handling
- * Delays execution until after a specified delay period
- */
-
 import { useState, useEffect } from 'react';
 import { UI_CONFIG } from '@/lib/constants';
 
@@ -25,9 +20,6 @@ export function useDebounce<T>(
   return debouncedValue;
 }
 
-/**
- * Debounced callback hook
- */
 export function useDebouncedCallback<T extends (...args: any[]) => any>(
   callback: T,
   delay: number = UI_CONFIG.debounceDelay

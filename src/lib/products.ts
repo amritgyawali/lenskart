@@ -285,12 +285,9 @@ export const products: Product[] = [
 /**
  * Enhanced product retrieval with error handling
  */
-export const getProductById = (id: ProductId): Product => {
+export const getProductById = (id: ProductId): Product | null => {
   const product = products.find(product => product.id === id);
-  if (!product) {
-    throw new AppError(`Product with ID ${id} not found`, ErrorCode.PRODUCT_NOT_FOUND, 404);
-  }
-  return product;
+  return product || null;
 };
 
 /**
@@ -298,7 +295,7 @@ export const getProductById = (id: ProductId): Product => {
  */
 export const getProductsByCategory = (category: CategoryType): Product[] => {
   if (!category) {
-    throw new AppError('Category is required', ErrorCode.INVALID_INPUT, 400);
+    return [];
   }
   return products.filter(product => product.category === category);
 };
@@ -308,7 +305,7 @@ export const getProductsByCategory = (category: CategoryType): Product[] => {
  */
 export const getProductsByFrameShape = (frameShape: FrameShapeType): Product[] => {
   if (!frameShape) {
-    throw new AppError('Frame shape is required', ErrorCode.INVALID_INPUT, 400);
+    return [];
   }
   return products.filter(product => product.frameShape === frameShape);
 };
@@ -318,7 +315,7 @@ export const getProductsByFrameShape = (frameShape: FrameShapeType): Product[] =
  */
 export const getProductsByCollection = (collection: string): Product[] => {
   if (!collection) {
-    throw new AppError('Collection is required', ErrorCode.INVALID_INPUT, 400);
+    return [];
   }
   return products.filter(product => product.collection === collection);
 };
@@ -388,6 +385,7 @@ export const getNewArrivals = (limit: number = 8): Product[] => {
  */
 export const getRelatedProducts = (productId: ProductId, limit: number = 4): Product[] => {
   const product = getProductById(productId);
+  if (!product) return [];
   
   return products
     .filter(p => 
@@ -410,6 +408,7 @@ export const getRelatedProducts = (productId: ProductId, limit: number = 4): Pro
  */
 export const checkProductAvailability = (productId: ProductId, quantity: number = 1): boolean => {
   const product = getProductById(productId);
+  if (!product) return false;
   return product.inStock && product.stockQuantity >= quantity;
 };
 
